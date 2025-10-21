@@ -49,8 +49,8 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
                 .authorizeHttpRequests(authorization -> authorization
-                        .requestMatchers(AUTH_WHITELIST[0], AUTH_WHITELIST[1], AUTH_WHITELIST[2], AUTH_WHITELIST[3], AUTH_WHITELIST[4], AUTH_WHITELIST[5], AUTH_WHITELIST[6], AUTH_WHITELIST[7], AUTH_WHITELIST[8], AUTH_WHITELIST[9], AUTH_WHITELIST[10]).permitAll()
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .antMatchers(AUTH_WHITELIST).permitAll()
+                        .antMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .cors()
